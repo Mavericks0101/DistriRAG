@@ -15,7 +15,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: AI PR Review
-        uses: jonit-dev/openrouter-github-action@main
+        # Pin the last packaged revision: upstream main does not include dist/index.js.
+        uses: jonit-dev/openrouter-github-action@a53c20b1342df7d7adb39828d8cc85c545df90c6
         with:
           # Required inputs
           github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided
