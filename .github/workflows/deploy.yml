@@ -1,0 +1,23 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build API Service Image
+        run: |
+          docker build -t distrirag-api-service:latest ./services/api-service
+
+      - name: Build Worker Service Image
+        run: |
+          docker build -t distrirag-worker-service:latest ./services/worker-service
