@@ -11,8 +11,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'make lint'
-                sh 'make test'
+                sh 'python3 -m black --check src tests'
+                sh 'python3 -m isort --check-only src tests'
+                sh 'python3 -m pytest -v'
             }
         }
 
